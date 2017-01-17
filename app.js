@@ -6,5 +6,6 @@ var imgClicks = [];
 function Product(name, path) {
   this.name = name;
   this.path = path;
-  imgClick.push
+  this.amtUsed = 0;
+  this.amtClicks = 0;
 }

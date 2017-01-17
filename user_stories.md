@@ -18,6 +18,8 @@
 2. Set up html page with links to style.css and app.js
 3. Create global var/ arrays to track images used and selected
 3. Create img object in app.js
-4. Create function to randomly select images
+  * Track number of times produced and number of times clicked
+4. Create function to randomly select and produce images
 5. Test randomly generating images
-6. Create event listener to create
+
+6. Create event listener to produce new images after user clicks old images
