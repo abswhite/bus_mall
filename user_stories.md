@@ -19,7 +19,8 @@
 3. Create global var/ arrays to track images used and selected
 3. Create img object in app.js
   * Track number of times produced and number of times clicked
-4. Create function to randomly select and produce images
-5. Test randomly generating images
+4. Create instances of object for every image
+5. Create function to randomly select and produce images
+6. Test randomly generating images
 
-6. Create event listener to produce new images after user clicks old images
+7. Create event listener to produce new images after user clicks old images
