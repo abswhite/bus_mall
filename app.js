@@ -47,32 +47,40 @@ var three;
 function random() {
   return Math.round(Math.random() * (imgUsed.length - 1));
 };
+var previouslyShown;
 
 function producedImage() {
-  var picOne = document.getElementById('picOne');
-  var picTwo = document.getElementById('picTwo');
-  var picThree = document.getElementById('picThree');
+  var currentDisplay = [];
+  //while previous images
+  //var productHistory
 
   //text.content --> img?
-  one = random();
+  var one = random();
   picOne.src = imgUsed[one].path;
+  picOne.alt = imgUsed[one].name;
   imgUsed[one].amtUsed ++;
 
 //no duplicates for three images shown
-  two = random();
-  picTwo.src = imgUsed[two].path;
-  imgUsed[one].amtUsed ++;
-  while (one !== two) {
+  var two = random();
+  while (two === one) {
     two = random();
-  };
+  }
+
+  picTwo.src = imgUsed[two].path;
+  picTwo.alt = imgUsed[two].name;
+  imgUsed[one].amtUsed ++;
 
   //no duplicates for theee images shown
-  three = random();
-  picThree.src = imgUsed[three].path;
-  imgUsed[three].amtUsed ++;
-  while ((one !== two) && (three !== two) && (one !== three)) {
+  var three = random();
+  while (three === one || three === two) {
     three = random();
-  };
+  }
+
+  picThree.src = imgUsed[three].path;
+  picThree.alt = imgUsed[three].name;
+  imgUsed[three].amtUsed ++;
+
+  previouslyShown = [one, two, three];
 };
 
 producedImage();
@@ -94,3 +102,12 @@ function click() {
 picOne.addEventListener('click', click);
 picTwo.addEventListener('click', click);
 picThree.addEventListener('click', click);
+
+// // function chooseProduct () {
+// var product;
+// for (var i = 0; i <3, i ++) {
+//   do product = random();
+// } while (imgUsed){
+//
+// }
+// }
