@@ -2,9 +2,6 @@
 
 //Global var
 var imgUsed = [];
-var picOne = document.getElementById('pic-one');
-var picTwo = document.getElementById('pic-two');
-var picThree = document.getElementById('pic-three');
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -40,9 +37,42 @@ var imgUsb = new Product('Sweep', 'img/usb.gif');
 var imgWaterCan = new Product('Water Can', 'img/water-can.jpg');
 var imgWineglass = new Product('Wine Glass', 'img/wine-glass.jpg');
 
+var one;
+var two;
+var three;
+
 //Random-generated
 var random = function() {
-  var result = imgUsed[Math.round(Math.random() * (imgUsed.length - 1))];
-  return result;
+  return Math.round(Math.random() * (imgUsed.length - 1));
 };
-console.log(random());
+
+var producedImage = function() {
+  var picOne = document.getElementById('pic-one');
+  var picTwo = document.getElementById('pic-two');
+  var picThree = document.getElementById('pic-three');
+
+  //text.content --> img?
+
+  one = random();
+  picOne.src = imgUsed[one].path;
+  imgUsed[one].amtUsed ++;
+
+//no duplicates for three images shown
+  two = random();
+  picTwo.src = imgUsed[two].path;
+  imgUsed[one].amtUsed ++;
+  while (one === two) {
+    two = random();
+  };
+
+  //no duplicates for theee images shown
+  three = random();
+  picThree.src = imgUsed[three].path;
+  imgUsed[three].amtUsed ++;
+  while (one === two || three === two || one === three) {
+    three = random();
+  };
+};
+
+producedImage();
+//declare global variables to keep track of clicks
