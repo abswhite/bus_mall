@@ -100,54 +100,62 @@ var selectTwo = 0;
 var selectThree = 0;
 
 //product images/ functionality on html
-var picOne = document.getElementById('picOne');
-var picTwo = document.getElementById('picTwo');
-var picThree = document.getElementById('picThree');
+// var picOne = document.getElementById('picOne');
+// var picTwo = document.getElementById('picTwo');
+// var picThree = document.getElementById('picThree');
 
-function clickOne() {
+function click() {
   if (totalClicks < 25) {
     selectOne += 1;
     totalClicks += 1;
-    imgUsed[one].amtClicks += 1;
-    imgUsed[one].amtUsed += 1;
+    imgUsed.amtClicks += 1;
+    imgUsed.amtUsed += 1;
     producedImage();
   } else if (totalClicks == 25) {
-    picOne.removeEventListener('click', clickOne);
-    console.log('One is Done!');
+    picOne.removeEventListener('click', click);
+    picTwo.removeEventListener('click', click);
+    picThree.removeEventListener('click', click);
+    console.log('Done!');
   }
 }
-
-function clickTwo() {
-  if (totalClicks < 25) {
-    selectTwo += 1;
-    totalClicks += 1;
-    imgUsed[two].amtClicks += 1;
-    imgUsed[one].amtUsed += 1;
-    producedImage();
-  } else if (totalClicks == 25) {
-    picTwo.removeEventListener('click', clickTwo);
-    console.log('Two is Done!');
-  }
-}
-
-function clickThree() {
-  if (totalClicks < 25) {
-    selectThree += 1;
-    totalClicks += 1;
-    imgUsed[three].amtClicks += 1;
-    imgUsed[one].amtUsed += 1;
-    producedImage();
-  } else if (totalClicks == 25){
-    picThree.removeEventListener('click', clickThree);
-    console.log('Three is Done!');
-  }
-}
+//
+// function clickTwo() {
+//   if (totalClicks < 25) {
+//     selectTwo += 1;
+//     totalClicks += 1;
+//     imgUsed[two].amtClicks += 1;
+//     imgUsed[one].amtUsed += 1;
+//     producedImage();
+//   } else if (totalClicks == 25) {
+//     picOne.removeEventListener('click', clickOne);
+//     picTwo.removeEventListener('click', clickTwo);
+//     picThree.removeEventListener('click', clickThree);
+//     console.log('Two is Done!');
+//   }
+// }
+//
+// function clickThree() {
+//   if (totalClicks < 25) {
+//     selectThree += 1;
+//     totalClicks += 1;
+//     imgUsed[three].amtClicks += 1;
+//     imgUsed[one].amtUsed += 1;
+//     producedImage();
+//   } else if (totalClicks == 25){
+//     picOne.removeEventListener('click', clickOne);
+//     picTwo.removeEventListener('click', clickTwo);
+//     picThree.removeEventListener('click', clickThree);
+//     console.log('Three is Done!');
+//   }
+//}
 
 // function imageClick(event) {
 //   if (totalClicks < 25) {
-picOne.addEventListener('click', clickOne);
-picTwo.addEventListener('click', clickTwo);
-picThree.addEventListener('click', clickThree);
+
+picOne.addEventListener('click', click);
+picTwo.addEventListener('click', click);
+picThree.addEventListener('click', click);
+
 //   } else if (totalClicks == 25) {
 //     picOne.removeEventListener('click', clickOne);
 //     picTwo.removeEventListener('click', clickTwo);
