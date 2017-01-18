@@ -47,9 +47,9 @@ var random = function() {
 };
 
 var producedImage = function() {
-  var picOne = document.getElementById('pic-one');
-  var picTwo = document.getElementById('pic-two');
-  var picThree = document.getElementById('pic-three');
+  var picOne = document.getElementById('picOne');
+  var picTwo = document.getElementById('picTwo');
+  var picThree = document.getElementById('picThree');
 
   //text.content --> img?
 
@@ -75,4 +75,40 @@ var producedImage = function() {
 };
 
 producedImage();
-//declare global variables to keep track of clicks
+
+//declare global variables to keep track of selections
+var selectOne = 0;
+var selectTwo = 0;
+var selectThree = 0;
+
+var totalClicks = 0;
+
+//product images/ functionality on html
+var picOne = document.getElementById('picOne');
+var picTwo = document.getElementById('picTwo');
+var picThree = document.getElementById('picThree');
+
+function clickOne() {
+  selectOne += 1;
+  imgUsed[one].amtClicks += 1;
+  totalClicks += 1;
+  producedImage();
+}
+
+function clickTwo() {
+  selectTwo += 1;
+  imgUsed[two].amtClicks += 1;
+  totalClicks += 1;
+  producedImage();
+}
+
+function clickThree() {
+  selectThree += 1;
+  imgUsed[three].amtClicks += 1;
+  totalClicks += 1;
+  producedImage();
+}
+
+picOne.addEventListener('click', clickOne);
+picTwo.addEventListener('click', clickTwo);
+picThree.addEventListener('click', clickThree);
