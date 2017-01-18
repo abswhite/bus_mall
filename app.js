@@ -43,11 +43,11 @@ var two;
 var three;
 
 //Random-generated
-var random = function() {
+function random() {
   return Math.round(Math.random() * (imgUsed.length - 1));
 };
 
-var producedImage = function() {
+function producedImage() {
   var picOne = document.getElementById('picOne');
   var picTwo = document.getElementById('picTwo');
   var picThree = document.getElementById('picThree');
@@ -143,10 +143,19 @@ function clickThree() {
   }
 }
 
+// function imageClick(event) {
+//   if (totalClicks < 25) {
 picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
-
+//   } else if (totalClicks == 25) {
+//     picOne.removeEventListener('click', clickOne);
+//     picTwo.removeEventListener('click', clickTwo);
+//     picThree.removeEventListener('click', clickThree);
+//   };
+// }
+//
+// imageClick();
 //aDiv.addEventListener('click', clickHandler, false);
 // while (totalClicks = 25) {
 //
