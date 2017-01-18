@@ -1,2 +1,2 @@
 ### Acknowledgements
-* Helped through "producedImage" function by old coworker
+* Helped through "producedImage" function by old coworker, Jay

@@ -2,6 +2,7 @@
 
 //Global var
 var imgUsed = [];
+var totalClicks = 0;
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -52,7 +53,6 @@ var producedImage = function() {
   var picThree = document.getElementById('picThree');
 
   //text.content --> img?
-
   one = random();
   picOne.src = imgUsed[one].path;
   imgUsed[one].amtUsed ++;
@@ -61,7 +61,7 @@ var producedImage = function() {
   two = random();
   picTwo.src = imgUsed[two].path;
   imgUsed[one].amtUsed ++;
-  while (one === two) {
+  while (one !== two) {
     two = random();
   };
 
@@ -69,19 +69,35 @@ var producedImage = function() {
   three = random();
   picThree.src = imgUsed[three].path;
   imgUsed[three].amtUsed ++;
-  while (one === two || three === two || one === three) {
+  while (!(one === two) && !(three === two) && !(one === three)) {
     three = random();
   };
 };
+// //function clickOne() {
+// // for(var i = 0; i < 25; i++) {
+//  selectOne += 1;
+  // imgUsed[one].amtClicks += 1;
+  // totalClicks += 1;
+  // producedImage();
+//   } else {
+  // console.log(DONE!!)
+//}
+// }
 
 producedImage();
+
+// function doneClicks() {
+//   if (totalClicks < 5) {
+//     producedImage();
+//   } else {
+//     return 'DONE!';
+//   }
+// }
 
 //declare global variables to keep track of selections
 var selectOne = 0;
 var selectTwo = 0;
 var selectThree = 0;
-
-var totalClicks = 0;
 
 //product images/ functionality on html
 var picOne = document.getElementById('picOne');
@@ -90,22 +106,25 @@ var picThree = document.getElementById('picThree');
 
 function clickOne() {
   selectOne += 1;
-  imgUsed[one].amtClicks += 1;
   totalClicks += 1;
+  imgUsed[one].amtClicks += 1;
+  imgUsed[one].amtUsed += 1;
   producedImage();
 }
 
 function clickTwo() {
   selectTwo += 1;
-  imgUsed[two].amtClicks += 1;
   totalClicks += 1;
+  imgUsed[two].amtClicks += 1;
+  imgUsed[one].amtUsed += 1;
   producedImage();
 }
 
 function clickThree() {
   selectThree += 1;
-  imgUsed[three].amtClicks += 1;
   totalClicks += 1;
+  imgUsed[three].amtClicks += 1;
+  imgUsed[one].amtUsed += 1;
   producedImage();
 }
 
@@ -113,6 +132,7 @@ picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
 
+//aDiv.addEventListener('click', clickHandler, false);
 // while (totalClicks = 25) {
 //
 // }
