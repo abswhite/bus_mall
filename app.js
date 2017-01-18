@@ -112,3 +112,7 @@ function clickThree() {
 picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
+
+// while (totalClicks = 25) {
+//
+// }
