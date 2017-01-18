@@ -9,7 +9,6 @@ var maxClicks = 25;
 function Product(name, path) {
   this.name = name;
   this.path = path;
-  this.text = this.amtClicks + ' votes for ' + this.name;
   this.amtUsed = 0;
   this.amtClicks = 0;
   imgUsed.push(this);
@@ -47,6 +46,7 @@ var three;
 function random() {
   return Math.round(Math.random() * (imgUsed.length - 1));
 };
+
 var previouslyShown;
 
 function producedImage() {
@@ -89,15 +89,32 @@ function click() {
   if (totalClicks < maxClicks) {
     totalClicks += 1;
     imgUsed.amtClicks += 1;
-    imgUsed.amtUsed += 1;
+    console.log('Clicks: ' + imgUsed.amtClicks);
+    console.log('Used: ' + imgUsed.amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks) {
     picOne.removeEventListener('click', click);
     picTwo.removeEventListener('click', click);
     picThree.removeEventListener('click', click);
     console.log('Done!');
+    renderTotals();
   }
 };
+
+function renderTotals() {
+  var renderTotals = document.getElementById('renderTotals');
+
+  var totalsElement = document.createElement('ul');
+
+  for (var i = 0; i < imgUsed.length; i++) {
+    var productElement = document.createElement('li');
+    productElement.textContent = imgUsed[i].name + ' has ' + imgUsed[i].amtUsed + ' views and ' + imgUsed[i].amtClicks + ' clicks.';
+    console.log(imgUsed[i].name);
+    totalsElement.appendChild(productElement);
+  }
+  renderTotals.appendChild(totalsElement);
+  console.log('I\'m in renderTotals');
+}
 
 picOne.addEventListener('click', click);
 picTwo.addEventListener('click', click);
