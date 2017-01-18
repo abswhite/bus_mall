@@ -3,6 +3,7 @@
 //Global var
 var imgUsed = [];
 var totalClicks = 0;
+var maxClicks = 25;
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -76,18 +77,13 @@ function producedImage() {
 
 producedImage();
 
-var selectOne = 0;
-var selectTwo = 0;
-var selectThree = 0;
-
 function click() {
-  if (totalClicks < 25) {
-    selectOne += 1;
+  if (totalClicks < maxClicks) {
     totalClicks += 1;
     imgUsed.amtClicks += 1;
     imgUsed.amtUsed += 1;
     producedImage();
-  } else if (totalClicks == 25) {
+  } else if (totalClicks == maxClicks) {
     picOne.removeEventListener('click', click);
     picTwo.removeEventListener('click', click);
     picThree.removeEventListener('click', click);
