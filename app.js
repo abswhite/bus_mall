@@ -100,9 +100,9 @@ var selectTwo = 0;
 var selectThree = 0;
 
 //product images/ functionality on html
-var picOne = document.getElementById('picOne');
-var picTwo = document.getElementById('picTwo');
-var picThree = document.getElementById('picThree');
+// var picOne = document.getElementById('picOne');
+// var picTwo = document.getElementById('picTwo');
+// var picThree = document.getElementById('picThree');
 
 function clickOne() {
   if (totalClicks < 25) {
@@ -113,6 +113,8 @@ function clickOne() {
     producedImage();
   } else if (totalClicks == 25) {
     picOne.removeEventListener('click', clickOne);
+    picTwo.removeEventListener('click', clickTwo);
+    picThree.removeEventListener('click', clickThree);
     console.log('One is Done!');
   }
 }
@@ -125,7 +127,9 @@ function clickTwo() {
     imgUsed[one].amtUsed += 1;
     producedImage();
   } else if (totalClicks == 25) {
+    picOne.removeEventListener('click', clickOne);
     picTwo.removeEventListener('click', clickTwo);
+    picThree.removeEventListener('click', clickThree);
     console.log('Two is Done!');
   }
 }
@@ -138,6 +142,8 @@ function clickThree() {
     imgUsed[one].amtUsed += 1;
     producedImage();
   } else if (totalClicks == 25){
+    picOne.removeEventListener('click', clickOne);
+    picTwo.removeEventListener('click', clickTwo);
     picThree.removeEventListener('click', clickThree);
     console.log('Three is Done!');
   }
