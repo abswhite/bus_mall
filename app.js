@@ -69,7 +69,7 @@ var producedImage = function() {
   three = random();
   picThree.src = imgUsed[three].path;
   imgUsed[three].amtUsed ++;
-  while (!(one === two) && !(three === two) && !(one === three)) {
+  while ((one !== two) && (three !== two) && (one !== three)) {
     three = random();
   };
 };
@@ -105,27 +105,42 @@ var picTwo = document.getElementById('picTwo');
 var picThree = document.getElementById('picThree');
 
 function clickOne() {
-  selectOne += 1;
-  totalClicks += 1;
-  imgUsed[one].amtClicks += 1;
-  imgUsed[one].amtUsed += 1;
-  producedImage();
+  if (totalClicks < 25) {
+    selectOne += 1;
+    totalClicks += 1;
+    imgUsed[one].amtClicks += 1;
+    imgUsed[one].amtUsed += 1;
+    producedImage();
+  } else if (totalClicks == 25) {
+    picOne.removeEventListener('click', clickOne);
+    console.log('One is Done!');
+  }
 }
 
 function clickTwo() {
-  selectTwo += 1;
-  totalClicks += 1;
-  imgUsed[two].amtClicks += 1;
-  imgUsed[one].amtUsed += 1;
-  producedImage();
+  if (totalClicks < 25) {
+    selectTwo += 1;
+    totalClicks += 1;
+    imgUsed[two].amtClicks += 1;
+    imgUsed[one].amtUsed += 1;
+    producedImage();
+  } else if (totalClicks == 25) {
+    picTwo.removeEventListener('click', clickTwo);
+    console.log('Two is Done!');
+  }
 }
 
 function clickThree() {
-  selectThree += 1;
-  totalClicks += 1;
-  imgUsed[three].amtClicks += 1;
-  imgUsed[one].amtUsed += 1;
-  producedImage();
+  if (totalClicks < 25) {
+    selectThree += 1;
+    totalClicks += 1;
+    imgUsed[three].amtClicks += 1;
+    imgUsed[one].amtUsed += 1;
+    producedImage();
+  } else if (totalClicks == 25){
+    picThree.removeEventListener('click', clickThree);
+    console.log('Three is Done!');
+  }
 }
 
 picOne.addEventListener('click', clickOne);
@@ -135,4 +150,13 @@ picThree.addEventListener('click', clickThree);
 //aDiv.addEventListener('click', clickHandler, false);
 // while (totalClicks = 25) {
 //
+// }
+
+// function containerHandler() {
+//   if () {
+//
+//   } else if (){
+//
+//   } else if(totalClicks = 25)
+//   theContainer.removeEventListener('click', handleContainer);
 // }
