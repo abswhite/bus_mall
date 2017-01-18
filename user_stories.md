@@ -22,5 +22,5 @@
 4. Create instances of object for every image
 5. Create function to randomly select and produce images
 6. Test randomly generating images
-
 7. Create event listener to produce new images after user clicks old images
+8. Use "if" statement to stop product generating function after 25 clicks
