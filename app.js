@@ -5,7 +5,8 @@ var imgUsed = [];
 var clicksArray = [];
 var imgProduced = [];
 var totalClicks = 0;
-var maxClicks = 25;
+var maxClicks = 5;
+var imgName = [];
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -135,6 +136,7 @@ function clickThree() {
     console.log('Clicks: ' + newSet[2].amtClicks);
     console.log('Used: ' + newSet[2].amtUsed);
     producedImage();
+
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
     newSet[2].amtClicks += 1;
@@ -143,26 +145,55 @@ function clickThree() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
 function renderTotals() {
-  var renderTotals = document.getElementById('renderTotals');
-
-  var totalsElement = document.createElement('ul');
 
   for (var i = 0; i < imgUsed.length; i++) {
-    var productElement = document.createElement('li');
-    productElement.textContent = imgUsed[i].name + ' has ' + imgUsed[i].amtUsed + ' views and ' + imgUsed[i].amtClicks + ' clicks.';
     console.log(imgUsed[i].name);
     console.log(imgUsed[i].amtClicks);
     clicksArray.push(imgUsed[i].amtClicks);
-    totalsElement.appendChild(productElement);
+    imgName.push(imgUsed[i].name);
   }
-  renderTotals.appendChild(totalsElement);
-  console.log('I\'m in renderTotals');
 }
 
 picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
+
+function renderChart () {
+  var context = document.getElementById('product-chart').getContext('2d');
+//
+// var chartData = [100, 200, 300, 50, 10];
+// var chartColors = ['blue','red','yellow','orange','green'];
+// var chartLabels = ['Adam', 'Jen', 'Chris', 'Lisa', 'Dan'];
+
+  var chartOptions = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+
+// var chartOptions = {};
+// chartOptions.scales.yAxes.ticks.beginAtZero = true;
+
+  var myFirstChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: imgName,
+      datasets: [{
+        label: '# of votes for each color',
+        data: clicksArray,
+      }]
+    },
+    options: chartOptions
+
+  });
+};
