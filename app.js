@@ -2,9 +2,11 @@
 
 //Global var
 var imgUsed = [];
+var clicksArray = [];
 var imgProduced = [];
 var totalClicks = 0;
-var maxClicks = 5;
+var maxClicks = 25;
+var imgName = [];
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -80,21 +82,21 @@ function producedImage() {
     picThree.alt = imgUsed[three].name;
 
   }
-  //imgProduced.push(newSet);
+  imgProduced.push(newSet);
   imgUsed[one].amtUsed += 1;
   imgUsed[two].amtUsed += 1;
   imgUsed[three].amtUsed += 1;
 
 };
+
 producedImage();
 console.log(newSet[0]);
 
 function clickOne() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    console.log(imgUsed);
     newSet[0].amtClicks += 1;
-    console.log('fsdfskd: ' + newSet[0].amtClicks);
+    console.log('Clicks: ' + newSet[0].amtClicks);
     console.log('Used: ' + newSet[0].amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {
@@ -105,6 +107,7 @@ function clickOne() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
@@ -123,6 +126,7 @@ function clickTwo() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
@@ -133,6 +137,7 @@ function clickThree() {
     console.log('Clicks: ' + newSet[2].amtClicks);
     console.log('Used: ' + newSet[2].amtUsed);
     producedImage();
+
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
     newSet[2].amtClicks += 1;
@@ -141,24 +146,53 @@ function clickThree() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
 function renderTotals() {
-  var renderTotals = document.getElementById('renderTotals');
-
-  var totalsElement = document.createElement('ul');
 
   for (var i = 0; i < imgUsed.length; i++) {
-    var productElement = document.createElement('li');
-    productElement.textContent = imgUsed[i].name + ' has ' + imgUsed[i].amtUsed + ' views and ' + imgUsed[i].amtClicks + ' clicks.';
     console.log(imgUsed[i].name);
-    totalsElement.appendChild(productElement);
+    console.log(imgUsed[i].amtClicks);
+    clicksArray.push(imgUsed[i].amtClicks);
+    imgName.push(imgUsed[i].name);
   }
-  renderTotals.appendChild(totalsElement);
-  console.log('I\'m in renderTotals');
 }
 
 picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
+
+function renderChart () {
+  var context = document.getElementById('product-chart').getContext('2d');
+
+  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896'];
+  var chartOptions = {
+    responsive: false,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  };
+
+// var chartOptions = {};
+// chartOptions.scales.yAxes.ticks.beginAtZero = true;
+
+  var productChart = new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: imgName,
+      datasets: [{
+        label: '# of Votes for Each Image',
+        data: clicksArray,
+        backgroundColor: chartColors,
+      }]
+    },
+    options: chartOptions
+
+  });
+};
