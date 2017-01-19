@@ -17,6 +17,29 @@ function Product(name, path) {
   imgUsed.push(this);
 };
 
+Product.prototype.persistToLocalStorage = function (){
+  localStorage.imgBag = JSON.stringify(this);
+  localStorage.imgBanana = JSON.stringify(this);
+  localStorage.imgBathroom = JSON.stringify(this);
+  localStorage.imgBoots = JSON.stringify(this);
+  localStorage.imgBreakfast = JSON.stringify(this);
+  localStorage.imgBubblegum = JSON.stringify(this);
+  localStorage.imgChair = JSON.stringify(this);
+  localStorage.imgCthulhu = JSON.stringify(this);
+  localStorage.imgDogDuck = JSON.stringify(this);
+  localStorage.imgDragon = JSON.stringify(this);
+  localStorage.imgPen = JSON.stringify(this);
+  localStorage.imgPetSweep = JSON.stringify(this);
+  localStorage.imgScissors = JSON.stringify(this);
+  localStorage.imgShark = JSON.stringify(this);
+  localStorage.imgSweep = JSON.stringify(this);
+  localStorage.imgTauntaun = JSON.stringify(this);
+  localStorage.imgUnicorn = JSON.stringify(this);
+  localStorage.imgUsb = JSON.stringify(this);
+  localStorage.imgWaterCan = JSON.stringify(this);
+  localStorage.imgWineglass = JSON.stringify(this);
+};
+
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
 var imgBanana = new Product('Banana', 'img/banana.jpg');
@@ -157,6 +180,7 @@ function renderTotals() {
     console.log(imgUsed[i].amtClicks);
     clicksArray.push(imgUsed[i].amtClicks);
     imgName.push(imgUsed[i].name);
+    imgUsed[i].persistToLocalStorage();
   }
 }
 
@@ -178,9 +202,6 @@ function renderChart () {
       }]
     }
   };
-
-// var chartOptions = {};
-// chartOptions.scales.yAxes.ticks.beginAtZero = true;
 
   var productChart = new Chart(context, {
     type: 'bar',
