@@ -5,7 +5,7 @@ var imgUsed = [];
 var clicksArray = [];
 var imgProduced = [];
 var totalClicks = 0;
-var maxClicks = 5;
+var maxClicks = 25;
 var imgName = [];
 
 //Object for product in Bus Mall
@@ -108,6 +108,7 @@ function clickOne() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
@@ -126,6 +127,7 @@ function clickTwo() {
     picThree.removeEventListener('click', clickThree);
     console.log('Done!');
     renderTotals();
+    renderChart();
   }
 };
 
@@ -165,13 +167,10 @@ picThree.addEventListener('click', clickThree);
 
 function renderChart () {
   var context = document.getElementById('product-chart').getContext('2d');
-//
-// var chartData = [100, 200, 300, 50, 10];
-// var chartColors = ['blue','red','yellow','orange','green'];
-// var chartLabels = ['Adam', 'Jen', 'Chris', 'Lisa', 'Dan'];
 
+  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896'];
   var chartOptions = {
-    responsive: true,
+    responsive: false,
     scales: {
       yAxes: [{
         ticks: {
@@ -184,13 +183,14 @@ function renderChart () {
 // var chartOptions = {};
 // chartOptions.scales.yAxes.ticks.beginAtZero = true;
 
-  var myFirstChart = new Chart(context, {
+  var productChart = new Chart(context, {
     type: 'bar',
     data: {
       labels: imgName,
       datasets: [{
-        label: '# of votes for each color',
+        label: '# of Votes for Each Image',
         data: clicksArray,
+        backgroundColor: chartColors,
       }]
     },
     options: chartOptions
