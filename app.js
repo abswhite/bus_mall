@@ -95,9 +95,8 @@ console.log(newSet[0]);
 function clickOne() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    console.log(imgUsed);
     newSet[0].amtClicks += 1;
-    console.log('fsdfskd: ' + newSet[0].amtClicks);
+    console.log('Clicks: ' + newSet[0].amtClicks);
     console.log('Used: ' + newSet[0].amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {

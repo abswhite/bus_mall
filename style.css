@@ -1,9 +1,35 @@
+body {
+  background-color: #e2d4d8;
+}
+
 img {
   width: 200px;
   height: 200px;
+  border: 2px solid #6b6e78;
+  box-shadow: 10px 10px #808187;
+  margin-left: 12px;
 }
 
-#demo-chart {
-  width: 800px;
-  height: 400px;
+#product-chart {
+  width: 700px;
+  height: 350px;
+  margin-top: 30px;
+}
+
+h1 {
+  font-family: 'Oswald';
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Abel';
+  text-align: center;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1px;
+  padding-right: 1px;
+  width: 700px;
 }
