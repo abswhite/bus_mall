@@ -10,16 +10,15 @@ var maxClicks = 5;
 function Product(name, path) {
   this.name = name;
   this.path = path;
-  this.amtUsed = 0;
   this.amtClicks = 0;
+  this.amtUsed = 0;
   imgUsed.push(this);
 };
-console.log(Product.amtUsed);
 
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
 console.log(imgBag);
-var imgBanana = new Product('Banana', 'img/Banana.jpg');
+var imgBanana = new Product('Banana', 'img/banana.jpg');
 var imgBathroom = new Product('Bathroom', 'img/bathroom.jpg');
 var imgBoots = new Product('Boots', 'img/boots.jpg');
 var imgBreakfast = new Product('Breakfast', 'img/breakfast.jpg');
@@ -50,19 +49,23 @@ function random() {
 };
 
 var previouslyShown;
+var imgSet = [];
+
+var one = random();
+var two = random();
+var three = random();
 
 function producedImage() {
 
-  var one = random();
   var indexOne = imgUsed[one];
-  console.log(one);
-  picOne.src = imgUsed[one].path;
-  picOne.alt = imgUsed[one].name;
-  imgProduced.push(imgUsed[one]);
+  console.log(indexOne);
+  console.log(imgUsed);
+  picOne.src = indexOne.path;
+  picOne.alt = indexOne.name;
+  imgProduced.push(indexOne);
   indexOne.amtUsed += 1;
 
 //no duplicates for three images shown
-  var two = random();
   while (two === one) {
     two = random();
   }
@@ -74,7 +77,6 @@ function producedImage() {
   indexTwo.amtUsed += 1;
 
   //no duplicates for theee images shown
-  var three = random();
   while (three === one || three === two) {
     three = random();
   }
@@ -90,14 +92,15 @@ function producedImage() {
   console.log(imgUsed[three]);
 
 };
-
 producedImage();
+console.log(one);
 
 function clickOne() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    imgUsed.amtClicks += 1;
-    console.log('Clicks: ' + imgUsed.amtClicks);
+    console.log(imgUsed);
+    imgUsed[one].amtClicks += 1;
+    console.log('fsdfskd: ' + imgUsed.amtClicks);
     console.log('Used: ' + imgUsed.amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {
@@ -113,7 +116,7 @@ function clickOne() {
 function clickTwo() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    imgUsed.amtClicks += 1;
+    imgUsed[two].amtClicks += 1;
     console.log('Clicks: ' + imgUsed.amtClicks);
     console.log('Used: ' + imgUsed.amtUsed);
     producedImage();
