@@ -2,27 +2,26 @@
 
 //Global var
 var imgUsed = [];
+var imgProduced = [];
 var totalClicks = 0;
+var maxClicks = 5;
 
 //Object for product in Bus Mall
 function Product(name, path) {
   this.name = name;
   this.path = path;
-  this.text = this.amtClicks + ' votes for ' + this.name;
-  this.amtUsed = 0;
   this.amtClicks = 0;
+  this.amtUsed = 0;
   imgUsed.push(this);
 };
 
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
-console.log(imgBag);
-var imgBanana = new Product('Banana', 'img/Banana.jpg');
+var imgBanana = new Product('Banana', 'img/banana.jpg');
 var imgBathroom = new Product('Bathroom', 'img/bathroom.jpg');
 var imgBoots = new Product('Boots', 'img/boots.jpg');
 var imgBreakfast = new Product('Breakfast', 'img/breakfast.jpg');
 var imgBubblegum = new Product('Bubblegum', 'img/bubblegum.jpg');
-console.log(imgBubblegum);
 var imgChair = new Product('Chair', 'img/chair.jpg');
 var imgCthulhu = new Product('Cthulhu', 'img/cthulhu.jpg');
 var imgDogDuck = new Product('Dog-Duck', 'img/dog-duck.jpg');
@@ -32,69 +31,134 @@ var imgPetSweep = new Product('PetSweep', 'img/pet-sweep.jpg');
 var imgScissors = new Product('Scissors', 'img/scissors.jpg');
 var imgShark = new Product('Shark', 'img/shark.jpg');
 var imgSweep = new Product('Sweep', 'img/sweep.png');
-var imgTauntaun = new Product('Scissors', 'img/tauntaun.jpg');
-var imgUnicorn = new Product('Shark', 'img/unicorn.jpg');
-var imgUsb = new Product('Sweep', 'img/usb.gif');
+var imgTauntaun = new Product('Tauntaun', 'img/tauntaun.jpg');
+var imgUnicorn = new Product('Unicorn', 'img/unicorn.jpg');
+var imgUsb = new Product('Usb', 'img/usb.gif');
 var imgWaterCan = new Product('Water Can', 'img/water-can.jpg');
 var imgWineglass = new Product('Wine Glass', 'img/wine-glass.jpg');
-
-var one;
-var two;
-var three;
 
 //Random-generated
 function random() {
   return Math.round(Math.random() * (imgUsed.length - 1));
 };
 
-function producedImage() {
-  var picOne = document.getElementById('picOne');
-  var picTwo = document.getElementById('picTwo');
-  var picThree = document.getElementById('picThree');
+var one;
+var two;
+var three;
+var newSet = [imgUsed[one], imgUsed[two], imgUsed[three]];
 
-  //text.content --> img?
-  one = random();
-  picOne.src = imgUsed[one].path;
-  imgUsed[one].amtUsed ++;
+function producedImage() {
+  for (var i = 0; i < newSet.length; i++) {
+
+    var one = random();
+    newSet[0] = imgUsed[one];
+    var indexOne = imgUsed[one];
+    picOne.src = indexOne.path;
+    picOne.alt = indexOne.name;
 
 //no duplicates for three images shown
-  two = random();
-  picTwo.src = imgUsed[two].path;
-  imgUsed[one].amtUsed ++;
-  while (one !== two) {
-    two = random();
-  };
+    var two = random();
+    while (two === one) {
+      two = random();
+    }
+    newSet[1] = imgUsed[two];
+
+    var indexTwo = imgUsed[two];
+    picTwo.src = imgUsed[two].path;
+    picTwo.alt = imgUsed[two].name;
 
   //no duplicates for theee images shown
-  three = random();
-  picThree.src = imgUsed[three].path;
-  imgUsed[three].amtUsed ++;
-  while ((one !== two) && (three !== two) && (one !== three)) {
-    three = random();
-  };
+    var three = random();
+    while (three === one || three === two) {
+      three = random();
+    }
+    newSet[2] = imgUsed[three];
+
+    var indexThree = imgUsed[three];
+    //indexThree.amtUsed++;
+    picThree.src = imgUsed[three].path;
+    picThree.alt = imgUsed[three].name;
+
+  }
+  //imgProduced.push(newSet);
+  imgUsed[one].amtUsed += 1;
+  imgUsed[two].amtUsed += 1;
+  imgUsed[three].amtUsed += 1;
+
 };
-
 producedImage();
+console.log(newSet[0]);
 
-var selectOne = 0;
-var selectTwo = 0;
-var selectThree = 0;
-
-function click() {
-  if (totalClicks < 25) {
-    selectOne += 1;
+function clickOne() {
+  if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    imgUsed.amtClicks += 1;
-    imgUsed.amtUsed += 1;
+    console.log(imgUsed);
+    newSet[0].amtClicks += 1;
+    console.log('fsdfskd: ' + newSet[0].amtClicks);
+    console.log('Used: ' + newSet[0].amtUsed);
     producedImage();
-  } else if (totalClicks == 25) {
-    picOne.removeEventListener('click', click);
-    picTwo.removeEventListener('click', click);
-    picThree.removeEventListener('click', click);
+  } else if (totalClicks == maxClicks - 1) {
+    totalClicks += 1;
+    newSet[0].amtClicks += 1;
+    picOne.removeEventListener('click', clickOne);
+    picTwo.removeEventListener('click', clickTwo);
+    picThree.removeEventListener('click', clickThree);
     console.log('Done!');
+    renderTotals();
   }
 };
 
-picOne.addEventListener('click', click);
-picTwo.addEventListener('click', click);
-picThree.addEventListener('click', click);
+function clickTwo() {
+  if (totalClicks < maxClicks - 1) {
+    totalClicks += 1;
+    newSet[1].amtClicks += 1;
+    console.log('Clicks: ' + newSet[1].amtClicks);
+    console.log('Used: ' + newSet[1].amtUsed);
+    producedImage();
+  } else if (totalClicks == maxClicks - 1) {
+    totalClicks += 1;
+    newSet[1].amtClicks += 1;
+    picOne.removeEventListener('click', clickOne);
+    picTwo.removeEventListener('click', clickTwo);
+    picThree.removeEventListener('click', clickThree);
+    console.log('Done!');
+    renderTotals();
+  }
+};
+
+function clickThree() {
+  if (totalClicks < maxClicks - 1) {
+    totalClicks += 1;
+    newSet[2].amtClicks += 1;
+    console.log('Clicks: ' + newSet[2].amtClicks);
+    console.log('Used: ' + newSet[2].amtUsed);
+    producedImage();
+  } else if (totalClicks == maxClicks - 1) {
+    totalClicks += 1;
+    newSet[2].amtClicks += 1;
+    picOne.removeEventListener('click', clickOne);
+    picTwo.removeEventListener('click', clickTwo);
+    picThree.removeEventListener('click', clickThree);
+    console.log('Done!');
+    renderTotals();
+  }
+};
+
+function renderTotals() {
+  var renderTotals = document.getElementById('renderTotals');
+
+  var totalsElement = document.createElement('ul');
+
+  for (var i = 0; i < imgUsed.length; i++) {
+    var productElement = document.createElement('li');
+    productElement.textContent = imgUsed[i].name + ' has ' + imgUsed[i].amtUsed + ' views and ' + imgUsed[i].amtClicks + ' clicks.';
+    console.log(imgUsed[i].name);
+    totalsElement.appendChild(productElement);
+  }
+  renderTotals.appendChild(totalsElement);
+  console.log('I\'m in renderTotals');
+}
+
+picOne.addEventListener('click', clickOne);
+picTwo.addEventListener('click', clickTwo);
+picThree.addEventListener('click', clickThree);

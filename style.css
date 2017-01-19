@@ -2,3 +2,8 @@ img {
   width: 200px;
   height: auto;
 }
+
+#demo-chart {
+  width: 800px;
+  height: 400px;
+}
