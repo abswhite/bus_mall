@@ -2,10 +2,10 @@
 
 //Global var
 var imgUsed = [];
+var clicksArray = [];
 var imgProduced = [];
 var totalClicks = 0;
 var maxClicks = 25;
-var clicksArray = [];
 
 //Object for product in Bus Mall
 function Product(name, path) {
