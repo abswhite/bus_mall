@@ -4,7 +4,8 @@
 var imgUsed = [];
 var imgProduced = [];
 var totalClicks = 0;
-var maxClicks = 5;
+var maxClicks = 25;
+var clicksArray = [];
 
 //Object for product in Bus Mall
 function Product(name, path) {
@@ -80,12 +81,13 @@ function producedImage() {
     picThree.alt = imgUsed[three].name;
 
   }
-  //imgProduced.push(newSet);
+  imgProduced.push(newSet);
   imgUsed[one].amtUsed += 1;
   imgUsed[two].amtUsed += 1;
   imgUsed[three].amtUsed += 1;
 
 };
+
 producedImage();
 console.log(newSet[0]);
 
@@ -153,6 +155,8 @@ function renderTotals() {
     var productElement = document.createElement('li');
     productElement.textContent = imgUsed[i].name + ' has ' + imgUsed[i].amtUsed + ' views and ' + imgUsed[i].amtClicks + ' clicks.';
     console.log(imgUsed[i].name);
+    console.log(imgUsed[i].amtClicks);
+    clicksArray.push(imgUsed[i].amtClicks);
     totalsElement.appendChild(productElement);
   }
   renderTotals.appendChild(totalsElement);
