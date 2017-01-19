@@ -17,13 +17,11 @@ function Product(name, path) {
 
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
-console.log(imgBag);
 var imgBanana = new Product('Banana', 'img/banana.jpg');
 var imgBathroom = new Product('Bathroom', 'img/bathroom.jpg');
 var imgBoots = new Product('Boots', 'img/boots.jpg');
 var imgBreakfast = new Product('Breakfast', 'img/breakfast.jpg');
 var imgBubblegum = new Product('Bubblegum', 'img/bubblegum.jpg');
-console.log(imgBubblegum);
 var imgChair = new Product('Chair', 'img/chair.jpg');
 var imgCthulhu = new Product('Cthulhu', 'img/cthulhu.jpg');
 var imgDogDuck = new Product('Dog-Duck', 'img/dog-duck.jpg');
@@ -39,72 +37,69 @@ var imgUsb = new Product('Usb', 'img/usb.gif');
 var imgWaterCan = new Product('Water Can', 'img/water-can.jpg');
 var imgWineglass = new Product('Wine Glass', 'img/wine-glass.jpg');
 
-var one;
-var two;
-var three;
-
 //Random-generated
 function random() {
   return Math.round(Math.random() * (imgUsed.length - 1));
 };
 
-var previouslyShown;
-var imgSet = [];
-
-var one = random();
-var two = random();
-var three = random();
+var one;
+var two;
+var three;
+var newSet = [imgUsed[one], imgUsed[two], imgUsed[three]];
 
 function producedImage() {
+  for (var i = 0; i < newSet.length; i++) {
 
-  var indexOne = imgUsed[one];
-  console.log(indexOne);
-  console.log(imgUsed);
-  picOne.src = indexOne.path;
-  picOne.alt = indexOne.name;
-  imgProduced.push(indexOne);
-  indexOne.amtUsed += 1;
+    var one = random();
+    newSet[0] = imgUsed[one];
+    var indexOne = imgUsed[one];
+    picOne.src = indexOne.path;
+    picOne.alt = indexOne.name;
 
 //no duplicates for three images shown
-  while (two === one) {
-    two = random();
-  }
+    var two = random();
+    while (two === one) {
+      two = random();
+    }
+    newSet[1] = imgUsed[two];
 
-  var indexTwo = imgUsed[two];
-  picTwo.src = imgUsed[two].path;
-  picTwo.alt = imgUsed[two].name;
-  imgProduced.push(imgUsed[two]);
-  indexTwo.amtUsed += 1;
+    var indexTwo = imgUsed[two];
+    picTwo.src = imgUsed[two].path;
+    picTwo.alt = imgUsed[two].name;
 
   //no duplicates for theee images shown
-  while (three === one || three === two) {
-    three = random();
-  }
-  var indexThree = imgUsed[three];
-  picThree.src = imgUsed[three].path;
-  picThree.alt = imgUsed[three].name;
-  imgProduced.push(imgUsed[three]);
-  indexThree.amtUsed += 1;
+    var three = random();
+    while (three === one || three === two) {
+      three = random();
+    }
+    newSet[2] = imgUsed[three];
 
-  previouslyShown = [one, two, three];
-  console.log(imgUsed[one]);
-  console.log(imgUsed[two]);
-  console.log(imgUsed[three]);
+    var indexThree = imgUsed[three];
+    indexThree.amtUsed++;
+    picThree.src = imgUsed[three].path;
+    picThree.alt = imgUsed[three].name;
+
+  }
+  imgProduced.push(newSet);
+  newSet[0].amtUsed += 1;
+  newSet[1].amtUsed += 1;
+  newSet[2].amtUsed += 1;
 
 };
 producedImage();
-console.log(one);
+console.log(newSet[0]);
 
 function clickOne() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
     console.log(imgUsed);
-    imgUsed[one].amtClicks += 1;
-    console.log('fsdfskd: ' + imgUsed.amtClicks);
-    console.log('Used: ' + imgUsed.amtUsed);
+    newSet[0].amtClicks += 1;
+    console.log('fsdfskd: ' + newSet[0].amtClicks);
+    console.log('Used: ' + newSet[0].amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
+    newSet[0].amtClicks += 1;
     picOne.removeEventListener('click', clickOne);
     picTwo.removeEventListener('click', clickTwo);
     picThree.removeEventListener('click', clickThree);
@@ -116,12 +111,13 @@ function clickOne() {
 function clickTwo() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    imgUsed[two].amtClicks += 1;
-    console.log('Clicks: ' + imgUsed.amtClicks);
-    console.log('Used: ' + imgUsed.amtUsed);
+    newSet[1].amtClicks += 1;
+    console.log('Clicks: ' + newSet[1].amtClicks);
+    console.log('Used: ' + newSet[1].amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
+    newSet[1].amtClicks += 1;
     picOne.removeEventListener('click', clickOne);
     picTwo.removeEventListener('click', clickTwo);
     picThree.removeEventListener('click', clickThree);
@@ -133,12 +129,13 @@ function clickTwo() {
 function clickThree() {
   if (totalClicks < maxClicks - 1) {
     totalClicks += 1;
-    imgUsed.amtClicks += 1;
-    console.log('Clicks: ' + imgProduced.amtClicks);
-    console.log('Used: ' + imgUsed.amtUsed);
+    newSet[2].amtClicks += 1;
+    console.log('Clicks: ' + newSet[2].amtClicks);
+    console.log('Used: ' + newSet[2].amtUsed);
     producedImage();
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
+    newSet[2].amtClicks += 1;
     picOne.removeEventListener('click', clickOne);
     picTwo.removeEventListener('click', clickTwo);
     picThree.removeEventListener('click', clickThree);
@@ -165,12 +162,3 @@ function renderTotals() {
 picOne.addEventListener('click', clickOne);
 picTwo.addEventListener('click', clickTwo);
 picThree.addEventListener('click', clickThree);
-
-// // function chooseProduct () {
-// var product;
-// for (var i = 0; i <3, i ++) {
-//   do product = random();
-// } while (imgUsed){
-//
-// }
-// }
