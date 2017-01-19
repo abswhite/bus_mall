@@ -80,10 +80,10 @@ function producedImage() {
     picThree.alt = imgUsed[three].name;
 
   }
-  imgProduced.push(newSet);
-  newSet[0].amtUsed += 1;
-  newSet[1].amtUsed += 1;
-  newSet[2].amtUsed += 1;
+  //imgProduced.push(newSet);
+  // imgUsed[one].amtUsed += 1;
+  // imgUsed[two].amtUsed += 1;
+  // imgUsed[three].amtUsed += 1;
 
 };
 producedImage();
