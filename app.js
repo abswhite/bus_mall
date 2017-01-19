@@ -75,15 +75,15 @@ function producedImage() {
     newSet[2] = imgUsed[three];
 
     var indexThree = imgUsed[three];
-    indexThree.amtUsed++;
+    //indexThree.amtUsed++;
     picThree.src = imgUsed[three].path;
     picThree.alt = imgUsed[three].name;
 
   }
   //imgProduced.push(newSet);
-  // imgUsed[one].amtUsed += 1;
-  // imgUsed[two].amtUsed += 1;
-  // imgUsed[three].amtUsed += 1;
+  imgUsed[one].amtUsed += 1;
+  imgUsed[two].amtUsed += 1;
+  imgUsed[three].amtUsed += 1;
 
 };
 producedImage();
