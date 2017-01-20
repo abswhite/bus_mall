@@ -1,6 +1,8 @@
 'use strict';
 
 //Global var
+// var data;
+// var allProducts = [];
 var imgUsed = [];
 var clicksArray = [];
 var imgProduced = [];
@@ -25,6 +27,20 @@ function localStorageKey() {
   }
 };
 
+// function localStorageKey() {
+//   if (localStorage.chartData && localStorage.allProducts) {
+//     console.log('Exists');
+//     data = JSON.parse(localStorage.chartData);
+//     allProducts = JSON.parse(localStorage.getItem('allProducts'));
+//   } else {
+//     console.log('Doesnt exist');
+//   }
+// };
+
+// function storageAdd() {
+//   myStorage = localStorage;
+//   return localStorage.setItem(myStorage += myStorage);
+// };
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
 var imgBanana = new Product('Banana', 'img/banana.jpg');
@@ -180,7 +196,7 @@ picThree.addEventListener('click', clickThree);
 function renderChart () {
   var context = document.getElementById('product-chart').getContext('2d');
 
-  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896'];
+  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#968896'];
   var chartOptions = {
     responsive: false,
     scales: {
@@ -206,3 +222,5 @@ function renderChart () {
 
   });
 };
+
+//storageAdd();
