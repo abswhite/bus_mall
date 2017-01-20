@@ -1,5 +1,5 @@
 ### Acknowledgements
-* Helped through "producedImage" function by old coworker, Jay
+* Helped through "producedImage" function by old coworker
 
 
 ####Today
