@@ -1,6 +1,8 @@
 'use strict';
 
 //Global var
+// var data;
+// var allProducts = [];
 var imgUsed = [];
 var clicksArray = [];
 var imgProduced = [];
@@ -17,6 +19,28 @@ function Product(name, path) {
   imgUsed.push(this);
 };
 
+function localStorageKey() {
+  console.log(imgUsed);
+  for (var i = 0; i < imgUsed.length; i++) {
+    localStorage.setItem(imgUsed[i].name , JSON.stringify(imgUsed[i]));
+  //localStorage.imgUsed = JSON.stringify(imgUsed);
+  }
+};
+
+// function localStorageKey() {
+//   if (localStorage.chartData && localStorage.allProducts) {
+//     console.log('Exists');
+//     data = JSON.parse(localStorage.chartData);
+//     allProducts = JSON.parse(localStorage.getItem('allProducts'));
+//   } else {
+//     console.log('Doesnt exist');
+//   }
+// };
+
+// function storageAdd() {
+//   myStorage = localStorage;
+//   return localStorage.setItem(myStorage += myStorage);
+// };
 //Create Instances
 var imgBag = new Product('Bag', 'img/bag.jpg');
 var imgBanana = new Product('Banana', 'img/banana.jpg');
@@ -108,6 +132,7 @@ function clickOne() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -118,6 +143,7 @@ function clickTwo() {
     console.log('Clicks: ' + newSet[1].amtClicks);
     console.log('Used: ' + newSet[1].amtUsed);
     producedImage();
+    //Product.persistToLocalStorage();
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
     newSet[1].amtClicks += 1;
@@ -127,6 +153,7 @@ function clickTwo() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -147,6 +174,7 @@ function clickThree() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -157,6 +185,7 @@ function renderTotals() {
     console.log(imgUsed[i].amtClicks);
     clicksArray.push(imgUsed[i].amtClicks);
     imgName.push(imgUsed[i].name);
+    //imgUsed[i].persistToLocalStorage();
   }
 }
 
@@ -167,7 +196,7 @@ picThree.addEventListener('click', clickThree);
 function renderChart () {
   var context = document.getElementById('product-chart').getContext('2d');
 
-  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896'];
+  var chartColors = ['#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#808187', '#6b6e78', '#808187', '#968896', '#ae8b98', '#9f717d', '#ae8b98', '#968896', '#968896'];
   var chartOptions = {
     responsive: false,
     scales: {
@@ -178,9 +207,6 @@ function renderChart () {
       }]
     }
   };
-
-// var chartOptions = {};
-// chartOptions.scales.yAxes.ticks.beginAtZero = true;
 
   var productChart = new Chart(context, {
     type: 'bar',
@@ -196,3 +222,5 @@ function renderChart () {
 
   });
 };
+
+//storageAdd();
