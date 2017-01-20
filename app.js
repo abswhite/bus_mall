@@ -17,27 +17,12 @@ function Product(name, path) {
   imgUsed.push(this);
 };
 
-Product.prototype.persistToLocalStorage = function (){
-  localStorage.imgBag = JSON.stringify(this);
-  localStorage.imgBanana = JSON.stringify(this);
-  localStorage.imgBathroom = JSON.stringify(this);
-  localStorage.imgBoots = JSON.stringify(this);
-  localStorage.imgBreakfast = JSON.stringify(this);
-  localStorage.imgBubblegum = JSON.stringify(this);
-  localStorage.imgChair = JSON.stringify(this);
-  localStorage.imgCthulhu = JSON.stringify(this);
-  localStorage.imgDogDuck = JSON.stringify(this);
-  localStorage.imgDragon = JSON.stringify(this);
-  localStorage.imgPen = JSON.stringify(this);
-  localStorage.imgPetSweep = JSON.stringify(this);
-  localStorage.imgScissors = JSON.stringify(this);
-  localStorage.imgShark = JSON.stringify(this);
-  localStorage.imgSweep = JSON.stringify(this);
-  localStorage.imgTauntaun = JSON.stringify(this);
-  localStorage.imgUnicorn = JSON.stringify(this);
-  localStorage.imgUsb = JSON.stringify(this);
-  localStorage.imgWaterCan = JSON.stringify(this);
-  localStorage.imgWineglass = JSON.stringify(this);
+function localStorageKey() {
+  console.log(imgUsed);
+  for (var i = 0; i < imgUsed.length; i++) {
+    localStorage.setItem(imgUsed[i].name , JSON.stringify(imgUsed[i]));
+  //localStorage.imgUsed = JSON.stringify(imgUsed);
+  }
 };
 
 //Create Instances
@@ -131,6 +116,7 @@ function clickOne() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -141,6 +127,7 @@ function clickTwo() {
     console.log('Clicks: ' + newSet[1].amtClicks);
     console.log('Used: ' + newSet[1].amtUsed);
     producedImage();
+    //Product.persistToLocalStorage();
   } else if (totalClicks == maxClicks - 1) {
     totalClicks += 1;
     newSet[1].amtClicks += 1;
@@ -150,6 +137,7 @@ function clickTwo() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -170,6 +158,7 @@ function clickThree() {
     console.log('Done!');
     renderTotals();
     renderChart();
+    localStorageKey();
   }
 };
 
@@ -180,7 +169,7 @@ function renderTotals() {
     console.log(imgUsed[i].amtClicks);
     clicksArray.push(imgUsed[i].amtClicks);
     imgName.push(imgUsed[i].name);
-    imgUsed[i].persistToLocalStorage();
+    //imgUsed[i].persistToLocalStorage();
   }
 }
 
